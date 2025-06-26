@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年货采购平台 - 登录</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- 配置Tailwind颜色 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e53935',    // 主红色
+            secondary: '#ffb30f',  // 黄色
+            neutral: '#f8f4f0',    // 米白色背景
+          },
+          fontFamily: {
+            sans: ['PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e53935' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .float-animation {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+    }
+  </style>
+</head>
+<body class="bg-neutral bg-pattern min-h-screen font-sans text-gray-800">
+  <!-- 装饰元素 - 漂浮的灯笼 -->
+  <div class="float-animation absolute top-10 right-10 w-16 h-24 hidden md:block">
+    <div class="w-full h-full relative">
+      <div class="w-full h-2 bg-primary rounded-full"></div>
+      <div class="w-full h-full bg-primary rounded-full flex items-center justify-center relative">
+        <i class="fa fa-circle text-secondary text-2xl"></i>
+        <div class="w-1 h-6 bg-secondary absolute bottom-0"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="float-animation absolute top-1/4 left-5 w-12 h-18 hidden md:block">
+    <div class="w-full h-full relative">
+      <div class="w-full h-2 bg-primary rounded-full"></div>
+      <div class="w-full h-full bg-primary rounded-full flex items-center justify-center relative">
+        <i class="fa fa-circle text-secondary text-xl"></i>
+        <div class="w-1 h-5 bg-secondary absolute bottom-0"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="float-animation absolute bottom-20 right-10 w-20 h-28 hidden lg:block">
+    <div class="w-full h-full relative">
+      <div class="w-full h-2 bg-primary rounded-full"></div>
+      <div class="w-full h-full bg-primary rounded-full flex items-center justify-center relative">
+        <i class="fa fa-circle text-secondary text-3xl"></i>
+        <div class="w-1 h-8 bg-secondary absolute bottom-0"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
+    <!-- 头部Logo -->
+    <div class="text-center mb-10 mt-8">
+      <div class="inline-block p-2 bg-primary rounded-full pulse-animation">
+        <i class="fa fa-shopping-bag text-white text-4xl"></i>
+      </div>
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-primary mt-4 text-shadow">
+        年货采购平台
+      </h1>
+      <p class="text-secondary mt-2 text-lg">一站式年货采购，让春节更有年味</p>
+    </div>
+    
+    <!-- 登录卡片 -->
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
+      <!-- 顶部装饰 -->
+      <div class="h-2 bg-gradient-to-r from-primary to-secondary"></div>
+      
+      <!-- 卡片内容 -->
+      <div class="p-8">
+        <h2 class="text-2xl font-bold text-center text-primary mb-6">用户登录</h2>
+        
+        <!-- 登录表单 -->
+        <form id="loginForm" class="space-y-6">
+          <!-- 用户名输入 -->
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <i class="fa fa-user text-primary text-xl"></i>
+            </div>
+            <input 
+              type="text" 
+              id="username" 
+              class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all outline-none"
+              placeholder="请输入用户名"
+              required
+            >
+          </div>
+          
+          <!-- 密码输入 -->
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <i class="fa fa-lock text-primary text-xl"></i>
+            </div>
+            <input 
+              type="password" 
+              id="password" 
+              class="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all outline-none"
+              placeholder="请输入密码"
+              required
+            >
+            <button 
+              type="button" 
+              id="togglePassword" 
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-primary cursor-pointer"
+            >
+              <i class="fa fa-eye-slash"></i>
+            </button>
+          </div>
+          
+          <!-- 登录按钮 -->
+          <button 
+            type="submit" 
+            class="w-full py-3 bg-primary text-white font-bold rounded-lg shadow-md hover:bg-primary/90 focus:ring-4 focus:ring-primary/30 transition-all transform hover:-translate-y-1"
+          >
+            <i class="fa fa-sign-in mr-2"></i>登 录
+          </button>
+        </form>
+        
+        <!-- 注册链接 -->
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            还没有账号？
+            <a href="#" class="text-primary font-medium hover:underline">
+              <i class="fa fa-user-plus mr-1"></i>立即注册
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部装饰 -->
+    <div class="mt-12 text-center text-gray-500 text-sm">
+      <p>© 2025 年货采购平台 版权所有</p>
+      <p class="mt-1">春节不打烊，年货送到家</p>
+    </div>
+  </div>
+  
+  <!-- 飘落的装饰元素 -->
+  <div id="decorations" class="fixed top-0 left-0 w-full h-full pointer-events-none"></div>
+
+  <script>
+    // 密码显示/隐藏切换
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      const icon = this.querySelector('i');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      }
+    });
+    
+    // 登录表单提交
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // 这里可以添加登录验证逻辑
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      if (username && password) {
+        // 显示加载状态
+        const loginButton = this.querySelector('button[type="submit"]');
+        const originalText = loginButton.innerHTML;
+        loginButton.disabled = true;
+        loginButton.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>正在登录...';
+        
+        // 模拟登录过程
+        setTimeout(() => {
+          // 这里可以跳转到首页或显示登录成功提示
+          alert('登录成功！欢迎使用年货采购平台');
+          loginButton.innerHTML = originalText;
+          loginButton.disabled = false;
+        }, 1500);
+      }
+    });
+    
+    // 生成飘落的装饰元素
+    function createDecorations() {
+      const decorations = document.getElementById('decorations');
+      const colors = ['#e53935', '#ffb30f', '#ffffff', '#8b0000', '#ff8c00'];
+      const shapes = ['circle', 'diamond', 'square', 'triangle'];
+      
+      for (let i = 0; i < 50; i++) {
+        const decoration = document.createElement('div');
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 15 + 5;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        
+        decoration.style.position = 'absolute';
+        decoration.style.width = `${size}px`;
+        decoration.style.height = `${size}px`;
+        decoration.style.left = `${left}%`;
+        decoration.style.top = '-10px';
+        decoration.style.backgroundColor = color;
+        decoration.style.opacity = (Math.random() * 0.5 + 0.3).toString();
+        decoration.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+        decoration.style.zIndex = '0';
+        
+        if (shape === 'circle') {
+          decoration.style.borderRadius = '50%';
+        } else if (shape === 'diamond') {
+          decoration.style.transform = 'rotate(45deg)';
+        } else if (shape === 'triangle') {
+          decoration.style.clippath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+        }
+        
+        decorations.appendChild(decoration);
+      }
+    }
+    
+    // 定义飘落动画
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fall {
+        0% {
+          transform: translateY(-10px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // 页面加载完成后创建装饰元素
+    window.addEventListener('load', createDecorations);
+  </script>
+</body>
+</html>
